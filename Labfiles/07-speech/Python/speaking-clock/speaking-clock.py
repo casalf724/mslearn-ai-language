@@ -29,9 +29,10 @@ def main():
 def TranscribeCommand():
     command = ''
 
-    # Configure speech service
-    speech_config = speech_sdk.SpeechConfig(ai_key, ai_region)
-    print('Ready to use speech service in:', speech_config.region)
+    # Configure speech recognition
+    audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
+    speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+    print('Speak now...')
 
     # Process speech input
 
