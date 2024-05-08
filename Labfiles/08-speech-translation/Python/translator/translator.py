@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from datetime import datetime
+from playsound import playsound
 import os
 
 # Import namespaces
@@ -42,15 +43,17 @@ def main():
 def Translate(targetLanguage):
     translation = ''
 
-    # Translate speech
-    audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
+     # Translate speech
+    audioFile = 'station.wav'
+    playsound(audioFile)
+    audio_config = speech_sdk.AudioConfig(filename=audioFile)
     translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config = audio_config)
-    print("Speak now...")
+    print("Getting speech from file...")
     result = translator.recognize_once_async().get()
     print('Translating "{}"'.format(result.text))
     translation = result.translations[targetLanguage]
     print(translation)
-
+    
     # Synthesize translation
 
 
