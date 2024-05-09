@@ -43,12 +43,10 @@ def main():
 def Translate(targetLanguage):
     translation = ''
 
-     # Translate speech
-    audioFile = 'station.wav'
-    playsound(audioFile)
-    audio_config = speech_sdk.AudioConfig(filename=audioFile)
+    # Translate speech
+    audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config = audio_config)
-    print("Getting speech from file...")
+    print("Speak now...")
     result = translator.recognize_once_async().get()
     print('Translating "{}"'.format(result.text))
     translation = result.translations[targetLanguage]
